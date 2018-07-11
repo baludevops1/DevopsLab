@@ -1,0 +1,135 @@
+Bastion to nginx
+Go to Gitbash
+[root@bastion ~]# pwd
+ls -ltr
+mkdir scripts -------------(mkdir =Create file name)(Add file name Scripts)
+We go to scripts file -------------.use command
+cd scripts/
+vi server.sh
+Go to insert mode
+Run this script
+
+#!/bin/bah
+echo "Enter your hostname"
+read servername
+echo "you are going to set hostname is $servername"
+echo "$servername" >/etc/hostname
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+privateip=$(hostname -I)
+echo "$privateip $servername" >>/etc/hosts
+hostname -F /etc/hostname
+echo "your servername is :`hostname` "
+echo "your servername is :$HOSTNAME "
+
+Save (:wq!)
+sh server.sh
+It will come Enter your hostname
+jumpserver 
+exit
+
+Lets create a new ec2 machine
+Create new security group ---->group name Nginx
+ssh custom to bastion sg
+
+Take new gitbash
+cd downloads/
+scp -i apache.pem apache.pem ec2-user@bastion public ip/tmp
+Yes
+
+Go to old gitbash
+ls -ltr
+[ec2-user@jumpserver tmp]$ chmod 400 apache.pem
+ls -ltr
+[ec2-user@jumpserver tmp]$ ssh -i apache.pem nginx private ip
+yes
+sudo su -
+mkdir scripts
+cd scripts/
+ls -ltr
+vi server.sh
+Insert mode……>paste the
+
+#!/bin/bah
+
+
+
+
+echo "Enter your hostname"
+
+
+read servername
+
+
+echo "you are going to set hostname is $servername"
+
+
+echo "$servername" >/etc/hostname
+
+
+
+
+
+
+
+#privateip=$((ifconfig eth0 | grep -w 'inet' | awk '{print $2}'))
+
+
+privateip=$(hostname -I)
+
+
+echo "$privateip $servername" >>/etc/hosts
+
+
+hostname -F /etc/hostname
+
+
+echo "your servername is :`hostname` "
+
+
+echo "your servername is :$HOSTNAME “
+
+Save (:wq!)
+sh server.sh
+Enter your hostname
+nginx
+exit
+sudo su 
+exit
+exit
+Again login to ssh -i apache.pem nginx private ip
+[ec2-user@nginx ~]$ sudo su
+yum install* -y   (To install nginx)
+Enable the epell
+After install nginx
+cd /etc/nginx/
+pwd
+ls -ltr
+vi nginx.conf
+systemctl start nginx  (To start nginx)
+ps -ef  grep -i nginx   (nginx run or not check)
+netstat -anlp  grep “:80”
+history
+cd /usr/share/nginx/html/
+pwd
+ls -ltr
+mv index.html index.html.old
+ls -ltr
+echo “this is nginx” index.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
