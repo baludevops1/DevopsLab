@@ -1,0 +1,61 @@
+Bastion to Web:
+Go to Gitbash
+cd downloads/
+ls -ltr (long list time reverse)
+Pwd (present working directory)
+ctrl +l (Screen Clear)
+ssh -i apache.pem ec2-user@public ip(bastion)
+sudo su (root user)
+whoami (Present user)
+who am i (parent login user(ec2))
+sudo su - (root directory # symbol)
+Update /etc/hostname------------------>vi /etc/hostname
+Go to insert mode ->delete the IP address->using dd(delete)then type bastion
+Press escape then save using-> :wq!(to save the root file)
+To see the command save or not save enter -> cat /etc/hostname
+Enter ifconfig --->copy ip address 
+Update /etc/hosts --------------------> vi /etc/hosts
+Press esc mode to set the numbers -----> :set nu
+Then copy ip address and follow bastion Eg: 172.31.28.221 bastion
+Then save the file using-------> :wq!
+Hostname -F /etc/hostname (Forcefull to change the command)
+hostname (it is showing bastion)
+Exit (It will come ec2 user)
+Sudo su -
+echo hai (to print the screen)
+echo “hai” >test (echo will override the hai on test)
+cat test (run this command to see it will override or not)
+Imp: echo “bastion” >/etc/hostname
+         echo “private ip bastion” >>/etc/hosts
+Exit
+(ec2-user@bastion ~)$
+vi web.pem
+Insert mode ---->copy pem file in your local----->paste the pem file----->
+Save (:wq!)
+ls  -ltr
+To change the permissions------> chmod 400 web.pem
+Next we connect to bastion to web
+We take web private ip
+ssh -i frontend.pem ec2-user@private ip
+sudo su -
+vi /etc/hostname
+Go to insert mode ->delete the IP address->using dd(delete)then type web
+Press escape then save using-> :wq!(to save the root file)
+Enter ifconfig --->copy ip address 
+Update /etc/hosts --------------------> vi /etc/hosts
+Press esc mode to set the numbers -----> :set nu
+Then copy ip address and follow bastion Eg: 172.31.28.221 web
+Then save the file using-------> :wq!
+hostname -F /etc/hostname (Forcefull to change the command)
+hostname (it is showing web)
+exit (It will come ec2 user)
+(ec2-user@bastion ~)$ssh -i frontend.pem ec2-user@private ip
+sudo su
+(root@web ec2-user)# yum install httpd -y
+yum install httpd -y -------------> for apache installation
+It will install apache
+systemctl start httpd -----------------> to start apache
+ps -ef    grep httpd ------------------>apache will run or not
+cd /var/www/html
+ls -ltr
+echo  “this is my web server” >index.html
